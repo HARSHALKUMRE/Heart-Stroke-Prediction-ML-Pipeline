@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Heart Stroke Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <a href="https://github.com/HARSHALKUMRE/US-Visa-Approval-Prediction" class="top-left-link" target="_blank">GitHub
+        Repository Link</a>
+    <h1>Heart Stroke Prediction</h1>
+    <div class="form-box">
+        <form action="{{url_for('predict_datapoint')}}" method="POST">
+
+            <div class="form-group">
+                <label for="gender">Patient's Gender:</label>
+                <select id="gender" name="gender" placeholder="Enter Patient's Gender" required="required">
+                    <option value="" disabled selected>Select your Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Patient's Age:</label>
+                <input type="text" id="age" name="age" min="0" max="100" step="1" placeholder="Enter Patient's age">
+            </div>
+
+
+            <div class="form-group">
+                <label for="hypertension">Patient's HyperTension [Yes = 1 : No = 0]:</label>
+                <select id="hypertension" name="hypertension" placeholder="Patient has Hyper Tension?"
+                    required="required">
+                    <option value="" disabled selected>Hyper Tension</option>
+                    <option value=0>Yes</option>
+                    <option value=1>No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="heart_disease">Patient's Heart Disease [Yes = 1 : No = 0]:</label>
+                <select id="heart_disease" name="heart_disease" placeholder="Patient has Heart Disease?"
+                    required="required">
+                    <option value="" disabled selected>Heart Disease</option>
+                    <option value=0>Yes</option>
+                    <option value=1>No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="ever_married">Patient Ever Married?:</label>
+                <select id="ever_married" name="ever_married" placeholder="is Patient Married?"
+                    required="required">
+                    <option value="" disabled selected>Are you Married?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="work_type">Patient's Work Type:</label>
+                <select id="work_type" name="work_type" placeholder="Enter Patient's Work Type" required="required">
+                    <option value="" disabled selected>Work Type</option>
+                    <option value="children">Children</option>
+                    <option value="Govt_job">Government Job</option>
+                    <option value="Never_worked"> Never Worked</option>
+                    <option value="Private">Private</option>
+                    <option value="Self-employed">Self-employed</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Residence_type">Residence Type:</label>
+                <select id="Residence_type" name="Residence_type" placeholder="Enter Patient's Residence type"
+                    required="required">
+                    <option value="" disabled selected>Select Residence Type</option>
+                    <option value="Urban">Urban</option>
+                    <option value="Rural">Rural</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="smoking_status">Smoking Status:</label>
+                <select id="smoking_status" name="smoking_status" placeholder="Enter you Smoking Status"
+                    required="required">
+                    <option value="" disabled selected>Select your Smoking Status</option>
+                    <option value="formerly smoked">
+                        Formerly smoked
+                    </option>
+                    <option value="never smoked">
+                        Never smoked
+                    </option>
+                    <option value="smokes">
+                        Smokes
+                    </option>
+                    <option value="Unknown">
+                        Unknown
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="avg_glucose_level">Average Glucose Level [50-300]:</label>
+                <input type="text" id="avg_glucose_level" name="avg_glucose_level" min="50" max="300" step="1"
+                    placeholder="Enter Patient's Avg Glucose Level">
+            </div>
+
+            <div class="form-group">
+                <label for="bmi">Body Mass Index [10-100]:</label>
+                <input type="text" id="bmi" name="bmi" min="10" max="100" step="1" placeholder="Enter Patient's BMI">
+            </div>
+
+            <div style="clear:both;"></div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <h2>
+        Predicted Value is : {{ results }}
+    </h2>
+</body>
+
+</html>
