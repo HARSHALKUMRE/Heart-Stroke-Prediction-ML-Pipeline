@@ -6,19 +6,6 @@ grid_search:
     verbose: 3
 model_selection:
   module_0:
-    class: CatBoostClassifier
-    module: catboost
-    params:
-      learning_rate: 0.1
-    search_param_grid:
-      learning_rate:
-      - 0.1
-      - 0.01
-      max_depth:
-      - 10
-      - 15
-
-  module_1:
     class: KNeighborsClassifier
     module: sklearn.neighbors
     search_param_grid:
@@ -36,4 +23,29 @@ model_selection:
       - 5
       - 9
       - 7
+
+  module_1:
+    class: XGBClassifier
+    module: xgboost
+    search_param_grid:
+      learning_rate:
+      - 0.1
+      - 0.01
+      max_depth:
+      - 5
+      - 8
+      - 12
+      - 20
+      - 30
+      n_estimators:
+      - 100
+      - 200
+      - 300
+      colsample_bylevel:
+      - 0.5
+      - 0.8
+      - 1
+      - 0.3
+      - 0.4 
+
     
