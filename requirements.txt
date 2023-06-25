@@ -13,6 +13,9 @@ python-dotenv==0.21.0
 types-s3transfer==0.6.0.post4
 neuro-mf==0.0.5
 catboost==1.1
+xgboost
 scikit-learn==1.1.2
 python-multipart==0.0.5
+flask
+flask_cors
 -e .
