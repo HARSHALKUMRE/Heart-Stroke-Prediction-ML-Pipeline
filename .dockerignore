@@ -1,0 +1,9 @@
+.gitignore
+artifacts
+venv
+docs
+stroke
+Heart_Stroke_Predictior.egg-info
+catboost_info
+notebooks
+project_structure_docs
