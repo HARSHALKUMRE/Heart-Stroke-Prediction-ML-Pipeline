@@ -16,7 +16,7 @@ jobs:
           name: run unit tests
           command: echo "Running unit tests"
 
-  continuous_delivery:
+  continuous-delivery:
     docker:
       - image: google/cloud-sdk
     resource_class: medium
@@ -49,7 +49,7 @@ jobs:
           name: push to private repository
           command: docker push $GOOGLE_COMPUTE_ZONE-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/$IMAGE_NAME:$IMAGE_TAG
 
-  continuous_deployment:
+  continuous-deployment:
     machine: true 
     resource_class: HARSHALKUMRE/self-hosted
     environment:
