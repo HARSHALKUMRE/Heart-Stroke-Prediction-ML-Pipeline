@@ -80,15 +80,9 @@ jobs:
           command: docker pull ${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/$GAR_IMAGE_NAME:$IMAGE_TAG 
         
       - run:
-          name: Run Image
-          command: |
-            docker run -d -e $AWS_ACCESS_KEY_ID -e $AWS_SECRET_ACCESS_KEY -e $MONGODB_URL -p 80:8080 "$GOOGLE_COMPUTE_ZONE-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:$IMAGE_TAG"
+          name: Set env variable
+          command: echo 'export $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $MONGODB_URL IMAGE_NAME="${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/finance-complaint:$IMAGE_TAG"' >> "$BASH_ENV"
             
-
-      - run:
-          name: Docker System Prune to Remove Old Images
-          command: sudo docker system prune -a 
-  
 workflows:
   CICD:
     jobs:
