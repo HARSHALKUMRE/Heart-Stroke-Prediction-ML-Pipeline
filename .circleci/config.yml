@@ -85,7 +85,7 @@ jobs:
 
       - run:
           name: start the containers
-          command: docker-compose up -d
+          command: docker-compose up --build
             
 workflows:
   CICD:
