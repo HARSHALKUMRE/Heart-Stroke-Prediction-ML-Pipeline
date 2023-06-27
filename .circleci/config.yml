@@ -90,7 +90,7 @@ jobs:
         
       - run:
           name: Set env variable
-          command: echo 'export IMAGE_NAME="${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/finance-complaint:$IMAGE_TAG"' >> "$BASH_ENV"
+          command: echo 'export IMAGE_NAME="${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/heart-stroke:$IMAGE_TAG"' >> "$BASH_ENV"
 
       - run:
           name: start container
