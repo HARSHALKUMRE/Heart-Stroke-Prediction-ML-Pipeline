@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  continuous_integration:
+  continuous-integration:
     docker:
       - image: cimg/base:stable
     resource_class: medium
@@ -100,8 +100,8 @@ workflows:
       - sanity-check:
           type: approval
           requires:
-            - continuous-delivery
-      
+          - continuous-delivery
+
       - continuous-deployment:
           requires:
             - sanity-check
