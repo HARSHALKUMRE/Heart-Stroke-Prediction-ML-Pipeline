@@ -81,9 +81,10 @@ jobs:
         
       - run:
           name: Run Image
-          command: |
-            docker run -d  AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID  AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY 
-            MONGODB_URL=$MONGODB_URL -p 80:8080 "$GOOGLE_COMPUTE_ZONE-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:$IMAGE_TAG"
+          #command: |
+          #  docker run -d  AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID  AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY 
+          #  MONGODB_URL=$MONGODB_URL -p 80:8080 "$GOOGLE_COMPUTE_ZONE-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE_NAME:$IMAGE_TAG"
+          command: echo 'export IMAGE_NAME="${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/heart-stroke:$IMAGE_TAG"' >> "$BASH_ENV"
 
       - run:
           name: Docker System Prune to Remove Old Images
