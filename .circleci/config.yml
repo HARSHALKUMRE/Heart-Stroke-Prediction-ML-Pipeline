@@ -61,6 +61,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       AWS_DEFAULT_REGION: "ap-south-1"
       MONGODB_URL: ${MONGODB_URL}
+      BUCKET_NAME: ${BUCKET_NAME}
     steps:
       - checkout
 
@@ -78,14 +79,23 @@ jobs:
       - run:
           name: pull image from private repository
           command: docker pull ${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/$GAR_IMAGE_NAME:$IMAGE_TAG 
+
+      - run:
+          name: Remove Already Running Container
+          command: docker ps -q --filter "name=${IMAGE_NAME}" | grep -q . && docker stop ${IMAGE_NAME} && docker rm -fv ${IMAGE_NAME} || true
+
+      - run:
+          name: free up system space
+          command: docker system prune -f
         
       - run:
           name: Set env variable
-          command: echo 'export $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $MONGODB_URL IMAGE_NAME="${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/finance-complaint:$IMAGE_TAG"' >> "$BASH_ENV"
+          command: echo 'export $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY $BUCKET_NAME $MONGODB_URL IMAGE_NAME="${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/finance-complaint:$IMAGE_TAG"' >> "$BASH_ENV"
 
       - run:
-          name: start the containers
-          command: docker-compose up --build
+          name: start container
+          command: docker run --name=${IMAGE_NAME} -d -p 80:8080 ${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/$IMAGE_NAME:$IMAGE_TAG
+
             
 workflows:
   CICD:
