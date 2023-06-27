@@ -62,5 +62,11 @@ class ModelPusherConfig:
     s3_model_key_path: str = "heart-stroke-model.pkl"
 
 
+@dataclass
+class StrokePredictionConfig:
+    model_file_path: str = "heart-stroke-model.pkl"
+    model_bucket_name: str = TRAINING_BUCKET_NAME
+    
+
 
                                         
