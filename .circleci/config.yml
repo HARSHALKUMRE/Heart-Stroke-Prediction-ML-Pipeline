@@ -52,7 +52,7 @@ jobs:
  
   continuous-deployment:
     machine: true
-    resource_class: HARSHALKUMRE/self-hosted
+    resource_class: harshalkumre/self-hosted
     environment:
       REPOSITORY: heart-stroke
       GAR_IMAGE_NAME: heart-stroke
@@ -100,7 +100,7 @@ workflows:
       - sanity-check:
           type: approval
           requires:
-          - continuous-deployment
+          - continuous-delivery
 
       - continuous-deployment:
           requires:
