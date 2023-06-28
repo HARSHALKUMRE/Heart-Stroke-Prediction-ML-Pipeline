@@ -94,7 +94,7 @@ jobs:
 
       - run:
           name: start container
-          command: docker run $IMAGE_NAME -p 80:8080 -v ${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/$IMAGE_NAME:$IMAGE_TAG
+          command: docker run -p 80:8080 -v ${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/$IMAGE_NAME:$IMAGE_TAG
 
             
 workflows:
