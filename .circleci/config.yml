@@ -88,13 +88,13 @@ jobs:
           name: free up system space
           command: docker system prune -f
         
-      - run:
-          name: Set env variable
-          command: echo 'export IMAGE_NAME="${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/heart-stroke:$IMAGE_TAG"' >> "$BASH_ENV"
+      #- run:
+      #    name: Set env variable
+      #    command: echo 'export IMAGE_NAME="${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/heart-stroke:$IMAGE_TAG"' >> "$BASH_ENV"
 
       - run:
-          name: start container
-          command: sudo docker run -d -p 80:8080 ${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/$IMAGE_NAME:$IMAGE_TAG
+          name: Run Docker Image to serve users
+          command: docker run -d -p 8080:8080 --name=${IMAGE_NAME} -e 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}' -e 'AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}' -e 'AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}' -e 'MONGODB_URL=${MONGODB_URL}' ${GOOGLE_COMPUTE_ZONE}-docker.pkg.dev/${GOOGLE_PROJECT_ID}/$REPOSITORY/$IMAGE_NAME:$IMAGE_TAG
 
             
 workflows:
